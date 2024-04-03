@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <link rel="stylesheet" href="StopWatch_Class_9.css">
+</head>
+<body>
+    <div class="main">
+        <h1 id="time">00:00:00</h1>
+        <input type="button" value="Start"   id="startbutton" onclick="clickbutton()">
+        <input type="button" value="Stop" id="stopwatch" style="background-color: rgb(61, 0, 0);" onclick="stop()">
+        <input type="button" value="Clear" id="clearwatch" onclick="clearwatch()">
+    
+</div>
+    <script>
+       let display=document.getElementById("time");
+       let start=document.getElementById("startbutton");
+       let Clear=document.getElementById("clearwatch");
+        let hours=0;
+        let minutes=0;
+        let seconds=0;
+        let interval;
+        function digits(time){
+            return (time < 10) ? "0" + time:time;
+        }
+        function stopwatch(){
+            seconds++;
+            if(seconds>=60){
+                seconds=0;
+                minutes++;
+            }
+            if(minutes>=60){
+                minutes=0;
+                hours++;
+            }
+            display.innerHTML=digits(hours)+":"+digits(minutes)+":"+digits(seconds);
+        }
+        function clickbutton(){
+            interval=setInterval(stopwatch,1000);
+        }
+        function stop(){
+            clearInterval(interval);
+        }
+        function clearwatch(){
+            clearInterval(interval);
+            seconds=0;
+            hours=0;
+            minutes=0;
+            display.innerHTML=digits(hours)+":"+digits(minutes)+":"+digits(seconds);
+        }
+    </script>
+</body>
+</html>
